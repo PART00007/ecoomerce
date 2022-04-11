@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap:20px;
+        }
+        @media  all and (min-width:80px) and (max-width:400px) {
+            #container{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
+        
+    </style>
+</head>
+     <body>
+        <button>
+            <a href="mycart.html">cart</a>
+        </button>
+       <h1>Mens</h1>
+       <div id="container">
+
+        </div>
+        
+        <script>
+            var cartdata;
+            if(localStorage.getItem("cartdata")===null){
+                cartdata=[]
+            }else{
+                cartdata=JSON.parse(localStorage.getItem("cartdata"))
+            }
+            var mensdata=[
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+                {
+                    imge_url:"https://via.placeholder.com/300",
+                    name:"Reebok Shoes",
+                    price:"1111",
+                    strikeprice:"2222",
+                },
+            ];
+    
+        mensdata.forEach(function(mendata){
+      
+          var box=document.createElement("div");
+          box.setAttribute("class","box")  // box
+          var img=document.createElement("img");   // img inside box
+          img.src=mendata.imge_url
+          var name=document.createElement("p");     // name inside box
+          name.textContent=mendata.name;
+          var price=document.createElement("p");    // price inside box
+          price.innerText=mendata.price;
+          var cartbutton=document.createElement("button");
+          cartbutton.innerText="Add to cart";
+          cartbutton.addEventListener("click",function(){
+             addtocart(mendata)
+          })
+          box.append(img,name,price,cartbutton);
+          document.querySelector("#container").append(box);
+
+        }) 
+        function addtocart(product){
+         cartdata.push(product);
+         console.log(cartdata)
+         localStorage.setItem("cartdata",JSON.stringify(cartdata));
+        }
+     
+     </script>
+
+</body>
+</html>

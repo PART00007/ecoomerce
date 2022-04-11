@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>MY CART</h1>
+   <div id="checkout">
+    
+   </div>
+
+     <script>
+      var cartdata=JSON.parse(localStorage.getItem("cartdata"))
+      cartdata.forEach(function(cartItem,cartindex){
+      
+      var box=document.createElement("div");
+      box.setAttribute("class","box")  // box
+      var img=document.createElement("img");   // img inside box
+      img.src=cartItem.imge_url
+      var name=document.createElement("p");     // name inside box
+      name.textContent=cartItem.name;
+      var price=document.createElement("p");    // price inside box
+      price.innerText=cartItem.price;
+      var cartbutton=document.createElement("button");
+      cartbutton.innerText="remove from cartt";
+      cartbutton.addEventListener("click",function(){
+        cartdata.splice(cartindex,1);
+        localStorage.setItem("cartdata",JSON.stringify(cartdata));
+        window.location.reload();
+      })
+      box.append(img,name,price,cartbutton);
+      document.querySelector("#checkout").append(box);
+
+    }) 
+  </script>
+</body>
+</html>
